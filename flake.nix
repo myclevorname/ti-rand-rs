@@ -4,9 +4,9 @@
       let pkgs = nixpkgs.legacyPackages.${system}; in
       {
         devShells.default = pkgs.rustPlatform.buildRustPackage {
-          name = "ti-rand";
+          name = "ti_rand";
           src = self;
-          cargoHash = "sha256-JEdVJiM8+pvXJkq4KiI2vtcA8rBCMi0Zu2dqa0+1Bsk=";
+          cargoHash = "sha256-VJNy1AgFFJI37e6otTl9gD0z8rs+6O+o2KyENWcZcqs=";
           nativeBuildInputs = with pkgs; [ clippy rustfmt ];
         };
       }

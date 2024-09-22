@@ -9,8 +9,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "04cb5b80a07a398dd9368df8c2e8ae1be87d960a9a64a8c2a2f7996bf7ce4fac"
 
 [[package]]
-name = "ti-rand"
-version = "0.1.0"
+name = "ti_rand"
+version = "0.1.1"
 dependencies = [
  "rational",
 ]
