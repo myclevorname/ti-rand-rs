@@ -1,5 +1,6 @@
 use std::ops::RangeInclusive;
 
+
 pub struct Seed {
     seed1: i64,
     seed2: i64,
@@ -33,9 +34,9 @@ impl Seed {
     }
 
     pub fn rand_numerator(&mut self) -> i64 {
-        let seed1 = (self.seed1 * MULT1) % MOD1;
+        let seed1 = self.seed1 * MULT1;
         let seed2 = (self.seed2 * MULT2) % MOD2;
-        *self = Seed { seed1, seed2 };
+        *self = Seed { seed1: seed1 % MOD1, seed2 };
 
         (seed1 - seed2) % MOD1
     }
@@ -46,13 +47,11 @@ impl Seed {
     }
 
     pub fn rand_int(&mut self, range: &RangeInclusive<i64>) -> i64 {
-        let result = Seed::rand(self);
+        let result = Seed::rand_numerator(self);
 
-        let start = *range.start() as f64;
-        let end = *range.end() as f64;
+        let start = *range.start();
+        let end = *range.end();
 
-        let result = start + (start - end + 1.0) * result;
-
-        result as i64
+        start + ((start - end + 1) * result) / MOD1
     }
 }
