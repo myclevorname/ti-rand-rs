@@ -1,0 +1,12 @@
+[package]
+name = "ti_rand"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[profile.release]
+lto = true
+strip = true
+
+[dependencies]
+rayon = "1.10.0"
