@@ -17,7 +17,11 @@ impl Default for Seed {
 }
 
 impl Seed {
-    pub fn new(seed: i64) -> Seed {
+    pub const fn new(seed: i64) -> Seed {
+        assert!(
+            seed >= -999_999_999 && seed <= 999_999_999,
+            "Seed was out of bounds."
+        );
         let seed = seed.abs();
         if seed == 0 {
             Seed {
@@ -40,7 +44,8 @@ impl Seed {
             seed2,
         };
 
-        (seed1 - seed2) % MOD1
+        (seed1 - seed2 + MOD1) % MOD1 // I have to add MOD1 because negative % positive =
+                                      // negative
     }
 
     pub fn rand(&mut self) -> f64 {
